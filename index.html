@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <script src="public/javascripts/jquery-3.2.1.js"></script>
+<script>
+var counter = 0;
+$(document).ready(function(){
+	$('#mainButton').on('click', function(event){
+		counter++;
+		$('#mainButton').html(counter);
+	});
+});
+</script>
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <style>
+	#mainButton{
+		width: 80%;
+		height: 100%;
+		background-color: red;
+		line-height: 500px;
+		text-align: center;
+		font-size: 20em;
+		user-select:none;
+	}
+  </style>
+</head>
+
+<body>
+<div id="mainButton">
+	
+</div>
+  <!--<script src="js/scripts.js"></script>-->
+</body>
+</html>
