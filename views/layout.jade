@@ -13,7 +13,7 @@ html
             var timeout = 30;
             var gameEnd = false;
             $(document).ready(function () {
-                $('#mainButton').on('click', function (event) {
+                $('#mainButton').on('mousedown', function (event) {
                     if (gameEnd) {
                         resetGame();
                         return;
