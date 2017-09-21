@@ -48,6 +48,12 @@ html
                 gameEnd = false;
             }
 
+            $(document).on('dblclick', function(event){
+                event.preventBubble();
+                event.preventDefault();
+                return false;
+            });
+
     style.
         body {
             margin: 0;
