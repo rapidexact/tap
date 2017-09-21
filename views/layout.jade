@@ -30,7 +30,7 @@ html
             });
 
             function timer() {
-                let timerText = moment.unix(timerEnded - ($.now() / 1000)).format('[timer started] mm:ss');
+                var timerText = moment.unix(timerEnded - ($.now() / 1000)).format('[timer started] mm:ss');
                 $('p:first').html(timerText);
                 if(timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
                 setTimeout(timer, 100);
