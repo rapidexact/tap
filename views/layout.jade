@@ -16,6 +16,7 @@ html
             $(document).ready(function () {
                 update();
                 $('#mainButton').on('click', function (event) {
+                    log('click');
                     if (gameEnd) {
                         resetGame();
                         return;
@@ -37,6 +38,7 @@ html
                 if(timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
                 setTimeout(timer, 100);
                 else {
+                    log('game end');
                     gameEnd = true;
                     alert('ВАШ РЕЗУЛЬТАТ ' + counter);
                     resetGame();
@@ -46,9 +48,11 @@ html
 
             function update() {
                 $('#mainButton').html(counter);
+                log('update' + counter);
             }
 
             function resetGame() {
+                log('reset game');
                 counter = 0;
                 timerStarted = 0;
                 timerEnded = 0;
@@ -59,9 +63,15 @@ html
             $(document).on('dblclick', function(event){
                 event.preventBubble();
                 event.preventDefault();
+                log('double click');
                 $(this).click().click();
                 return false;
             });
+
+            function log(text) {
+                $('#log').append('<p>' + text + '</p>');
+                $('#log').scrollTop($('#log p:last-child').prop('offsetTop'));
+            }
 
     style.
         body {
@@ -83,6 +93,30 @@ html
             user-select: none; /* Standard syntax */
             cursor: pointer;
             display: block;
+            color: black;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+        h1 + p{
+            font-size: 1rem;
+        }
+
+        #log{
+            height: 3em;
+            max-height: 3em;
+            font-size: 1em;
+            line-height: 1.1em;
+            overflow-y: scroll;
+        }
+
+        #log p {
+            margin: 0;
+            padding: 0;
+            height: 1em;
+            font-size: 1em;
+            line-height: 1.1em;
         }
     body
         block content
