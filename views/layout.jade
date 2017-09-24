@@ -68,10 +68,12 @@ html
             });
 
             function log(text) {
-                $('#log').append('<p>' + text + '</p>');
-                $('#log').scrollTop($('#log p:last-child').prop('offsetTop'));
+                $('#log').append('<p>' + text + '</p>').scrollTop($('#log p:last-child').prop('offsetTop'));
             }
 
+            $(window).on('click', function (event) {
+                log('window onclick'); 
+            });
     style.
         body {
             margin: 0;
