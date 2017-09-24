@@ -52,6 +52,7 @@ html
             $(document).on('dblclick', function(event){
                 event.preventBubble();
                 event.preventDefault();
+                $(this).click().click();
                 return false;
             });
 
