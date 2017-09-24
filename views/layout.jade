@@ -11,10 +11,11 @@ html
             var counter = 0;
             var timerStarted = 0;
             var timerEnded = 0;
-            var timeout = 30;
+            var timeout = 5;
             var gameEnd = false;
             $(document).ready(function () {
-                $('#mainButton').on('mousedown', function (event) {
+                update();
+                $('#mainButton').on('click', function (event) {
                     if (gameEnd) {
                         resetGame();
                         return;
@@ -26,7 +27,7 @@ html
                         timer();
                     }
                     counter++;
-                    $('#mainButton').html(counter);
+                    update();
                 });
             });
 
@@ -38,7 +39,13 @@ html
                 else {
                     gameEnd = true;
                     alert('ВАШ РЕЗУЛЬТАТ ' + counter);
+                    resetGame();
+                    update();
                 }
+            }
+
+            function update() {
+                $('#mainButton').html(counter);
             }
 
             function resetGame() {
