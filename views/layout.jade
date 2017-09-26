@@ -6,7 +6,6 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(src='/javascripts/jquery-3.2.1.js')
         script(src='/javascripts/moment.min.js')
-        script(src='/javascripts/jquery.nodoubletapzoom.js')
         script(src='/javascripts/zingtouch.js')
         script.
             var counter = 0;
@@ -16,22 +15,17 @@ html
             var gameEnd = false;
             $(document).ready(function () {
                 var tap = new ZingTouch.Tap({
-                    maxDelay: 100,
+                    maxDelay: 1000,
                     numInputs: 1,
                     tolerance: 125
                 });
-
-
-
                 var zt = new ZingTouch.Region(document.body);
                 zt.bind($('#mainButton')[0],tap, function (event) {
-                    //log('click');
                     if (gameEnd) {
                         resetGame();
                         return;
                     }
                     if (counter === 0) {
-                        console.log('initTimer');
                         timerStarted = $.now() / 1000;
                         timerEnded = timerStarted + timeout;
                         timer();
@@ -40,21 +34,6 @@ html
                     update();
                 }, false)
                 update();
-                $('#mainButton').on('click', function (event) {
-                    //log('click');
-                    if (gameEnd) {
-                        resetGame();
-                        return;
-                    }
-                    if (counter === 0) {
-                        console.log('initTimer');
-                        timerStarted = $.now() / 1000;
-                        timerEnded = timerStarted + timeout;
-                        timer();
-                    }
-                    counter++;
-                    update();
-                });
             });
 
             function timer() {
@@ -63,7 +42,6 @@ html
                 if(timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
                 setTimeout(timer, 100);
                 else {
-                    log('game end');
                     gameEnd = true;
                     alert('ВАШ РЕЗУЛЬТАТ ' + counter);
                     resetGame();
@@ -76,7 +54,6 @@ html
             }
 
             function resetGame() {
-                log('reset game');
                 counter = 0;
                 timerStarted = 0;
                 timerEnded = 0;
@@ -84,22 +61,6 @@ html
                 gameEnd = false;
             }
 
-            $(document).on('dblclick', function(event){
-                event.preventBubble();
-                event.preventDefault();
-                //log('double click');
-                $(this).click().click();
-                return false;
-            });
-
-            function log(text) {
-                $('#log').append('<p>' + text + '</p>').scrollTop($('#log p:last-child').prop('offsetTop'));
-            }
-
-
-            $('#mainButton').hammer().bind("tap", function (event) {
-                alert('1');
-            }).add(new Hammer.Tap({event: 'quadrupletap', taps: 4}));
     style.
         body {
             font-size: 2em;
@@ -114,10 +75,10 @@ html
         #mainButton {
             margin: 0 auto;
             width: 80%;
-            height: 70vh;
+            height: 70%;
             background-color: red;
             text-align: center;
-            font-size: 18rem;
+            font-size: 18em;
             -webkit-user-select: none; /* Chrome, Opera, Safari */
             -moz-user-select: none; /* Firefox 2+ */
             -ms-user-select: none; /* IE 10+ */
@@ -128,26 +89,10 @@ html
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2em;
         }
         h1 + p{
-            font-size: 1rem;
-        }
-
-        #log{
-            height: 3em;
-            max-height: 3em;
-            font-size: 5em;
-            line-height: 5.1em;
-            overflow-y: scroll;
-        }
-
-        #log p {
-            margin: 0;
-            padding: 0;
-            height: 1em;
             font-size: 1em;
-            line-height: 1.1em;
         }
 
     body
