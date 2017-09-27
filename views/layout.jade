@@ -11,46 +11,61 @@ html
             var counter = 0;
             var timerStarted = 0;
             var timerEnded = 0;
-            var timeout = 60;
+            var timeout = 30;
             var gameEnd = false;
+            var gameStarted = false;
+            var defaultButtonText = 'Start!';
+            var defaultTimerText = '30 sec';
             $(document).ready(function () {
                 var tap = new ZingTouch.Tap({
-                    maxDelay: 1000,
+                    maxDelay: 500,
                     numInputs: 1,
                     tolerance: 125
                 });
                 var zt = new ZingTouch.Region(document.body);
-                zt.bind($('#mainButton')[0],tap, function (event) {
+                zt.bind($('#mainButton p')[0],tap, function (event) {
                     if (gameEnd) {
-                        resetGame();
+
                         return;
                     }
                     if (counter === 0) {
                         timerStarted = $.now() / 1000;
+                        gameStarted = true;
                         timerEnded = timerStarted + timeout;
                         timer();
                     }
                     counter++;
+                    $('#click')[0].pause();
+                    setTimeout(function () {
+                        $('#click')[0].play();
+                    }, 0);
                     update();
                 }, false)
                 update();
             });
 
             function timer() {
-                var timerText = moment.unix(timerEnded - ($.now() / 1000)).format('[timer started] mm:ss');
-                $('p:first').html(timerText);
+                var timerText = moment.unix(timerEnded - ($.now() / 1000)).format('ss[ sec]');
+                $('#timer').html(timerText);
                 if(timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
                 setTimeout(timer, 100);
                 else {
                     gameEnd = true;
-                    alert('ВАШ РЕЗУЛЬТАТ ' + counter);
-                    resetGame();
+                    gameStarted = false;
                     update();
                 }
             }
 
             function update() {
-                $('#mainButton').html(counter);
+                $('#mainButton p').html(counter);
+                if(!gameStarted){
+                    $('#mainButton p').html(defaultButtonText);
+                    $('#timer').html(defaultTimerText);
+                }
+                if(gameEnd){
+                    $('#timer').html('Time’s Up!');
+                    $('#mainButton p').html(counter);
+                }
             }
 
             function resetGame() {
@@ -59,6 +74,8 @@ html
                 timerEnded = 0;
                 timeout = 30;
                 gameEnd = false;
+                gameStarted = false;
+                update();
             }
 
     style.
@@ -69,16 +86,43 @@ html
             text-align: center;
             width: 100%;
             height: 100vh;
-            overflow: scroll;
+            /*overflow: scroll;*/
         }
 
-        #mainButton {
-            margin: 0 auto;
+        #toBest{
+            text-align: right;
+            margin: 1em 1em;
+            color: gray;
+            font-size: 1.5em;
+        }
+
+        .button p{
+            line-height: 2em;
+            font-size: 5em;
+            margin: 0;
+        }
+
+
+
+        h1 {
+            font-size: 4.5em;
+            /*margin-top: 1em;*/
+        }
+        h1 + p{
+            font-size: 1.5em;
+            margin: -2em 1em 1em;
+        }
+
+        #timer{
+            font-size: 3em;
+            margin: 1em 0.4em 0em;
+        }
+
+        .button{
+            border-radius: 1em;
+            margin: 0 auto 1em;
             width: 80%;
-            height: 70%;
-            background-color: red;
             text-align: center;
-            font-size: 4em;
             -webkit-user-select: none; /* Chrome, Opera, Safari */
             -moz-user-select: none; /* Firefox 2+ */
             -ms-user-select: none; /* IE 10+ */
@@ -88,11 +132,29 @@ html
             color: black;
         }
 
-        h1 {
-            font-size: 2em;
+        #mainButton {
+            background-color: #ff3232;
         }
-        h1 + p{
-            font-size: 1em;
+
+        .buttons{
+            margin: 2.5em auto;
+        }
+
+        .buttons p{
+            font-size: 2.5em;
+            color: grey;
+        }
+
+        #shareButton {
+            background-color: #3cf;
+            float: left;
+            width: 45%;
+        }
+
+        #playAgainButton{
+            background-color: #4ae27c;
+            float: right;
+            width: 45%;
         }
 
     body

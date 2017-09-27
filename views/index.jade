@@ -1,6 +1,19 @@
 extends layout
 
 block content
+  p#toBest Best score 250
   h1= title
-  p Welcome to #{title}
-  div#mainButton
+  p#intro.
+    How many taps can you achieve within 30 seconds?
+                   Challenge your friends now!
+  p#timer
+  div#mainButton.button
+    p
+  .buttons.button
+    div#shareButton.button
+      p Share
+    div#playAgainButton.button(onclick="resetGame();")
+      p Play again
+  div(style="display:none;visibility:none;")
+    audio#click(controls, preload="auto")
+      source(src="/sounds/click.wav", type="audio/mpeg")
