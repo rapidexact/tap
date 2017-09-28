@@ -2,7 +2,7 @@ doctype html
 html
     head
         title= title
-        meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=0")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(src='/javascripts/jquery-3.2.1.js')
         script(src='/javascripts/moment.min.js')
@@ -16,6 +16,7 @@ html
             var gameStarted = false;
             var defaultButtonText = 'Start!';
             var defaultTimerText = '30 sec';
+            var gameResult = false;
             $(document).ready(function () {
                 var tap = new ZingTouch.Tap({
                     maxDelay: 500,
@@ -25,7 +26,6 @@ html
                 var zt = new ZingTouch.Region(document.body);
                 zt.bind($('#mainButton p')[0],tap, function (event) {
                     if (gameEnd) {
-
                         return;
                     }
                     if (counter === 0) {
@@ -51,7 +51,8 @@ html
                 setTimeout(timer, 100);
                 else {
                     gameEnd = true;
-                    gameStarted = false;
+                    //gameStarted = false;
+                    gameResult = timerText;
                     update();
                 }
             }
@@ -69,6 +70,7 @@ html
             }
 
             function resetGame() {
+                location.reload();
                 counter = 0;
                 timerStarted = 0;
                 timerEnded = 0;
@@ -80,7 +82,7 @@ html
 
     style.
         body {
-            font-size: 2em;
+            font-size: 2rem;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -91,36 +93,36 @@ html
 
         #toBest{
             text-align: right;
-            margin: 1em 1em;
+            margin: 1rrem 1rrem;
             color: gray;
-            font-size: 1.5em;
+            font-size: 1.5rrem;
         }
 
         .button p{
-            line-height: 2em;
-            font-size: 5em;
+            line-height: 2rrem;
+            font-size: 5rrem;
             margin: 0;
         }
 
 
 
         h1 {
-            font-size: 4.5em;
-            /*margin-top: 1em;*/
+            font-size: 4.5rrem;
+            /*margin-top: 1rem;*/
         }
         h1 + p{
-            font-size: 1.5em;
-            margin: -2em 1em 1em;
+            font-size: 1.5rrem;
+            margin: -2rrem 1rrem 1rrem;
         }
 
         #timer{
-            font-size: 3em;
-            margin: 1em 0.4em 0em;
+            font-size: 3rem;
+            margin: 1rem 0.4rem 0rem;
         }
 
         .button{
-            border-radius: 1em;
-            margin: 0 auto 1em;
+            border-radius: 1rem;
+            margin: 0 auto 1rem;
             width: 80%;
             text-align: center;
             -webkit-user-select: none; /* Chrome, Opera, Safari */
@@ -137,11 +139,11 @@ html
         }
 
         .buttons{
-            margin: 2.5em auto;
+            margin: 2.5rem auto;
         }
 
         .buttons p{
-            font-size: 2.5em;
+            font-size: 2.5rem;
             color: grey;
         }
 
