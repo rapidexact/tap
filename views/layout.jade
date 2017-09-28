@@ -53,6 +53,7 @@ html
                     gameEnd = true;
                     //gameStarted = false;
                     gameResult = timerText;
+                    $('.invisible').removeClass('invisible');
                     update();
                 }
             }
@@ -167,6 +168,10 @@ html
             background-color: #4ae27c;
             float: right;
             width: 45%;
+        }
+
+        .invisible{
+            visibility: hidden;
         }
 
     body
