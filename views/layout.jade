@@ -8,6 +8,7 @@ html
         script(src='/javascripts/moment.min.js')
         script(src='/javascripts/zingtouch.js')
         script.
+            var userBestScore = 0;
             var counter = 0;
             var timerStarted = 0;
             var timerEnded = 0;
@@ -18,6 +19,8 @@ html
             var defaultTimerText = '30 sec';
             var gameResult = false;
             $(document).ready(function () {
+                userBestScore = localStorage.getItem('userBestScore') || 0;
+                $('#toBest').html('Best score: ' + userBestScore);
                 var tap = new ZingTouch.Tap({
                     maxDelay: 500,
                     numInputs: 1,
@@ -35,14 +38,15 @@ html
                         timer();
                     }
                     counter++;
-                    $('#click')[0].pause();
-                    setTimeout(function () {
-                        $('#click')[0].play();
-                    }, 0);
                     update();
                 }, false)
                 update();
             });
+
+            function setUserBest(best) {
+                userBestScore = best;
+                localStorage.setItem('userBestScore', userBestScore);
+            }
 
             function timer() {
                 var timerText = moment.unix(timerEnded - ($.now() / 1000)).format('ss[ sec]');
@@ -51,9 +55,12 @@ html
                 setTimeout(timer, 100);
                 else {
                     gameEnd = true;
+                    if(counter > userBestScore){
+                        setUserBest(counter);
+                    }
                     //gameStarted = false;
                     gameResult = timerText;
-                    $('.invisible').removeClass('invisible');
+                    $('.buttons.invisible').removeClass('invisible');
                     update();
                 }
             }
@@ -95,7 +102,7 @@ html
         #toBest{
             text-align: right;
             margin: 1rem 1rem;
-            color: gray;
+            color: #848484;
             font-size: 1rem;
         }
 
@@ -137,6 +144,7 @@ html
 
         #intro{
             font-size: 0.7rem;
+            color: #868686;
         }
 
         #mainButton {
@@ -155,7 +163,7 @@ html
         .buttons p{
             font-size: 1rem;
             line-height: 2.5rem;
-            color: grey;
+            color: #5f5e5e;
         }
 
         #shareButton {
