@@ -13,8 +13,10 @@ html
                 VK.init({
                     apiId: 6214504
                 });
-                VK.Auth.login(function () {
-                    alert('vk account logged');
+                VK.Auth.login(function (session, status) {
+                    console.log('vk account logged');
+                    console.log(session);
+                    console.log(status);
                 });
             });
         script.
