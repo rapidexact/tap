@@ -7,6 +7,7 @@ html
         script(src='/javascripts/jquery-3.2.1.js')
         script(src='/javascripts/moment.min.js')
         script(src='/javascripts/zingtouch.js')
+        script(src="https://vk.com/js/api/openapi.js?149", type="text/javascript")
         script.
             var userBestScore = 0;
             var counter = 0;
@@ -18,7 +19,13 @@ html
             var defaultButtonText = 'Start!';
             var defaultTimerText = '30 sec';
             var gameResult = false;
+            VK.init({
+                apiId: 6214504
+            });
             $(document).ready(function () {
+
+
+
                 userBestScore = localStorage.getItem('userBestScore') || 0;
                 $('#toBest').html('Best score: ' + userBestScore);
                 var tap = new ZingTouch.Tap({
