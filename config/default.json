@@ -1,0 +1,8 @@
+{
+  "dbConfig": {
+    "host": "localhost",
+    "port": 3306,
+    "dbName": "",
+    "connectUrl": "mysql://root@localhost/taptap"
+  }
+}

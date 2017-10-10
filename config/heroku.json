@@ -1,0 +1,8 @@
+{
+  "dbConfig": {
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "port": 3306,
+    "dbName": "heroku_c092eebb20d69b1",
+    "connectUrl": "mysql://bb55686d2baf39:39b42d6e@us-cdbr-iron-east-05.cleardb.net/heroku_c092eebb20d69b1?reconnect=true"
+  }
+}
