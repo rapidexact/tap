@@ -13,10 +13,12 @@ html
                 VK.init({
                     apiId: 6214504
                 });
-                VK.Auth.login(function (session, status) {
+                VK.Auth.login(function (response) {
                     console.log('vk account logged');
-                    console.log(session);
-                    console.log(status);
+                    console.log(response);
+                    VK.Api.call('friends.get', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
+                        console.log(response);
+                    });
                 });
             });
         script.
@@ -45,7 +47,7 @@ html
                     tolerance: 125
                 });
                 var zt = new ZingTouch.Region(document.body);
-                zt.bind($('#mainButton p')[0],tap, function (event) {
+                zt.bind($('#mainButton p')[0], tap, function (event) {
                     if (gameEnd) {
                         return;
                     }
@@ -69,11 +71,11 @@ html
             function timer() {
                 var timerText = moment.unix(timerEnded - ($.now() / 1000)).format('ss[ sec]');
                 $('#timer').html(timerText);
-                if(timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
-                setTimeout(timer, 100);
+                if (timerStarted + (($.now() / 1000) - timerStarted) < timerEnded - 1)
+                    setTimeout(timer, 100);
                 else {
                     gameEnd = true;
-                    if(counter > userBestScore){
+                    if (counter > userBestScore) {
                         setUserBest(counter);
                     }
                     //gameStarted = false;
@@ -85,11 +87,11 @@ html
 
             function update() {
                 $('#mainButton p').html(counter);
-                if(!gameStarted){
+                if (!gameStarted) {
                     $('#mainButton p').html(defaultButtonText);
                     $('#timer').html(defaultTimerText);
                 }
-                if(gameEnd){
+                if (gameEnd) {
                     $('#timer').html('Time’s Up!');
                     $('#mainButton p').html(counter);
                 }
@@ -117,35 +119,34 @@ html
             /*overflow: scroll;*/
         }
 
-        #toBest{
+        #toBest {
             text-align: right;
             margin: 1rem 1rem;
             color: #848484;
             font-size: 1rem;
         }
 
-        .button p{
+        .button p {
             line-height: 2rem;
             font-size: 5rem;
             margin: 0;
         }
 
-
-
         h1 {
             font-size: 3.5rem;
         }
-        h1 + p{
+
+        h1 + p {
             font-size: 0.8rem;
             margin: -1.5rem 1rem 1rem;
         }
 
-        #timer{
+        #timer {
             font-size: 1.5rem;
             margin: 1rem 0.4rem 0rem;
         }
 
-        .button{
+        .button {
             border-radius: 0.5rem;
             margin: 0 auto 1rem;
             width: 80%;
@@ -159,7 +160,7 @@ html
             color: black;
         }
 
-        #intro{
+        #intro {
             font-size: 0.7rem;
             color: #868686;
         }
@@ -173,11 +174,11 @@ html
             line-height: 5rem;
         }
 
-        .buttons{
+        .buttons {
             margin: 1rem auto;
         }
 
-        .buttons p{
+        .buttons p {
             font-size: 1rem;
             line-height: 2.5rem;
             color: #5f5e5e;
@@ -189,13 +190,13 @@ html
             width: 45%;
         }
 
-        #playAgainButton{
+        #playAgainButton {
             background-color: #4ae27c;
             float: right;
             width: 45%;
         }
 
-        .invisible{
+        .invisible {
             visibility: hidden;
         }
 
