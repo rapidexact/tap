@@ -45,7 +45,7 @@ router.use(function (req, res, next) {
     let vkApiCookie = req.cookies[openApiCookieName];
     let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
     console.error(session);
-    isTokenValid(session, creds.protectedAppKey);
+    console.error(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid':'User token is invalid');
 });
 
 /* GET home page. */
