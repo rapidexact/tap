@@ -27,7 +27,7 @@ function isTokenValid(session, protectedAppKey) {
     sessionArr.push(session.expire);
     sessionArr.push(session.mid);
     sessionArr.push(session.secret);
-    sessionArr.push(session.sid);
+    // sessionArr.push(session.sid);
     sesstionStr = sessionArr.join('') + protectedAppKey;
     let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
     console.log(session.sig);
