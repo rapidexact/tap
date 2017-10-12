@@ -21,7 +21,7 @@ let creds = {
 };
 let openApiCookieName = 'vk_app_' + creds.appId;
 
-function isTokenValid(token, session, protectedAppKey) {
+function isTokenValid(session, protectedAppKey) {
     let sessionArr = [];
     let sesstionStr = '';
     sessionArr.push(session.expire);
@@ -30,7 +30,7 @@ function isTokenValid(token, session, protectedAppKey) {
     sessionArr.push(session.sid);
     sesstionStr = sessionArr.join('') + protectedAppKey;
     let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
-    return token === hash;
+    return session.sig === hash;
 }
 function parseOpenApiCookie(cookie) {
     let values = cookie.split('&');
@@ -44,8 +44,8 @@ function parseOpenApiCookie(cookie) {
 router.use(function (req, res, next) {
     let vkApiCookie = req.cookies[openApiCookieName];
     let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
-    console.error(session);
-    console.error(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid':'User token is invalid');
+    console.log(session);
+    console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid':'User token is invalid');
 });
 
 /* GET home page. */
