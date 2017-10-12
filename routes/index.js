@@ -23,10 +23,11 @@ let openApiCookieName = 'vk_app_' + creds.appId;
 function isTokenValid(session, protectedAppKey) {
     let sessionArr = [];
     let sesstionStr = '';
-    sessionArr.push(session.expire);
-    sessionArr.push(session.mid);
-    sessionArr.push(session.secret);
-    sesstionStr = sessionArr.join('') + protectedAppKey;
+    // sessionArr.push(session.expire);
+    // sessionArr.push(session.mid);
+    // sessionArr.push(session.secret);
+    sesstionStr = `expire=${session.expire}mid=${session.mid}secret=${session.secret}sid=${session.sid}`;
+    // sesstionStr = sessionArr.join('') + protectedAppKey;
     let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
     console.log({
         sessionStr: sesstionStr,
