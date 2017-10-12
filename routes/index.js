@@ -4,7 +4,6 @@ const config = require('config');
 const dbConfig = config.get('dbConfig');
 const Sequelize = require('sequelize');
 const crypto = require('crypto');
-const request = require('request');
 const _ = require('underscore');
 const vk = require('vk-call').vk;
 
@@ -38,17 +37,7 @@ function parseOpenApiCookie(cookie) {
     });
     return result;
 }
-function openApiCall(methodName, options, token, apiVersion) {
-    request.get({url:BASE_OPEN_API_URL + `method/${methodName}`,
-    qs: {
-        user_id: 413999592,
-        access_token: token,
-        v: apiVersion
-    }}).on('response', function (response) {
-        return response;
-    });
 
-}
 router.use(function (req, res, next) {
     if (req.cookies[openApiCookieName]) {
         let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
@@ -57,7 +46,7 @@ router.use(function (req, res, next) {
     }
 
 
-    var api = new vk({
+    let api = new vk({
         token: '785b787c785b787c785b787c947805ab147785b785b787c2180ac8b63dc09f0341d6154',
         version: "5.50",
         timeout: 10000
