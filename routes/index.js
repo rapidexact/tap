@@ -30,6 +30,8 @@ function isTokenValid(session, protectedAppKey) {
     sessionArr.push(session.sid);
     sesstionStr = sessionArr.join('') + protectedAppKey;
     let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
+    console.log(session.sig);
+    console.log(hash);
     return session.sig === hash;
 }
 function parseOpenApiCookie(cookie) {
