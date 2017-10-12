@@ -21,19 +21,8 @@ let creds = {
 let openApiCookieName = 'vk_app_' + creds.appId;
 
 function isTokenValid(session, protectedAppKey) {
-    let sessionArr = [];
-    let sesstionStr = '';
-    // sessionArr.push(session.expire);
-    // sessionArr.push(session.mid);
-    // sessionArr.push(session.secret);
-    sesstionStr = `expire=${session.expire}mid=${session.mid}secret=${session.secret}sid=${session.sid}${protectedAppKey}`;
-    // sesstionStr = sessionArr.join('') + protectedAppKey;
-    let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
-    console.log({
-        sessionStr: sesstionStr,
-        session: session,
-        hash: hash
-    });
+    let sessionStr = `expire=${session.expire}mid=${session.mid}secret=${session.secret}sid=${session.sid}${protectedAppKey}`;
+    let hash = crypto.createHash('md5').update(sessionStr).digest('hex');
     return session.sig === hash;
 }
 function parseOpenApiCookie(cookie) {
@@ -46,10 +35,12 @@ function parseOpenApiCookie(cookie) {
     return result;
 }
 router.use(function (req, res, next) {
-    let vkApiCookie = req.cookies[openApiCookieName];
-    let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
-    console.log(session);
-    console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
+    if (req.cookies[openApiCookieName]) {
+        let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
+        console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
+        req.user = isTokenValid(session, creds.protectedAppKey);
+    }
+    next();
 });
 
 /* GET home page. */
