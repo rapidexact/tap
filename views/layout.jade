@@ -14,7 +14,8 @@ html
                     apiId: 6214504
                 });
                 VK.Auth.getLoginStatus(function (response) {
-                    if(response.status === 'unknown'){
+                    //if(response.status === 'unknown'){
+                    if(true){
                         VK.Auth.login(function (response) {
                             console.log('vk account logged');
                             console.log(response);
