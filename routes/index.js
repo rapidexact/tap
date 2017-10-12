@@ -28,8 +28,11 @@ function isTokenValid(session, protectedAppKey) {
     sessionArr.push(session.secret);
     sesstionStr = sessionArr.join('') + protectedAppKey;
     let hash = crypto.createHash('md5').update(sesstionStr).digest('hex');
-    console.log(session.sig);
-    console.log(hash);
+    console.log({
+        sessionStr: sesstionStr,
+        session: session,
+        hash: hash
+    });
     return session.sig === hash;
 }
 function parseOpenApiCookie(cookie) {
@@ -45,7 +48,7 @@ router.use(function (req, res, next) {
     let vkApiCookie = req.cookies[openApiCookieName];
     let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
     console.log(session);
-    console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid':'User token is invalid');
+    console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
 });
 
 /* GET home page. */
