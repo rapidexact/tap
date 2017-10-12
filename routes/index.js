@@ -52,13 +52,13 @@ router.use(function (req, res, next) {
         timeout: 10000
     });
 
-    api.call('users.get', {
-        user_id: 413999592,
-        fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'
-    }).then(response => {
-        res.json(response);
-    });
-    // next();
+    // api.call('users.get', {
+    //     user_id: 413999592,
+    //     fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'
+    // }).then(response => {
+    //     res.json(response);
+    // });
+    next();
 });
 
 /* GET home page. */
