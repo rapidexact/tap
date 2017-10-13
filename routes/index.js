@@ -60,7 +60,7 @@ router.use(function (req, res, next) {
         console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
         if (isTokenValid(session, creds.protectedAppKey)) {
             Users.findOne({where: {user_vk: session.mid}}).then(user => {
-                if (user.length === 0 || !user) {
+                if (!user || user.length === 0) {
                     Users.create({
                         user_vk: session.mid,
                         registeredAt: sequelize.fn('NOW'),
