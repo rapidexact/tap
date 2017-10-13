@@ -69,8 +69,9 @@ router.use(function (req, res, next) {
                     }).then(user => {
                         api.call('users.get', {
                             user_id: session.mid,
-                            fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'
+                            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
                         }).then(response => {
+                            console.log(response);
                             Users_vk.create({
                                 user_id: session.mid,
                                 nickname: response.nickname,
