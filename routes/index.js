@@ -19,6 +19,7 @@ Records.sync().then(() => {
 
 let creds = {
     protectedAppKey: 'hlMNxJzHmiICqB52tIAi',
+    API_TOKEN_KEY : '785b787c785b787c785b787c947805ab147785b785b787c2180ac8b63dc09f0341d6154',
     appId: 6214504,
 };
 let openApiCookieName = 'vk_app_' + creds.appId;
@@ -47,18 +48,18 @@ router.use(function (req, res, next) {
 
 
     let api = new vk({
-        token: '785b787c785b787c785b787c947805ab147785b785b787c2180ac8b63dc09f0341d6154',
+        token: creds.API_TOKEN_KEY,
         version: "5.50",
         timeout: 10000
     });
 
-    // api.call('users.get', {
-    //     user_id: 413999592,
-    //     fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'
-    // }).then(response => {
-    //     res.json(response);
-    // });
-    next();
+    api.call('users.get', {
+        user_id: 413999592,
+        fields: 'email, nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'
+    }).then(response => {
+        res.json(response);
+    });
+    // next();
 });
 
 /* GET home page. */
