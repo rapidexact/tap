@@ -77,7 +77,7 @@ router.use(function (req, res, next) {
                                 nickname: response.nickname,
                                 domain: response.domain,
                                 sex: response.sex,
-                                bdate: Date.parse(response.bdate),
+                                // bdate: (Date.parse(response.bdate))toISOString(),
                                 city: response.city,
                                 country: response.country,
                                 has_mobile: response.has_mobile,
