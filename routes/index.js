@@ -94,6 +94,8 @@ router.use(function (req, res, next) {
         } else {
             next();
         }
+    } else {
+        next();
     }
 });
 
