@@ -9,4 +9,4 @@ module.exports = (sequelize, DataTypes) => {
         record_value: DataTypes.INTEGER,
         timestamp: DataTypes.INTEGER,
     })
-}
+};

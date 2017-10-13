@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
         },
         user_vk : DataTypes.INTEGER,
-        registeredAt : DataTypes.TIMESTAMP,
+        registeredAt : DataTypes.DATE,
         played_games_count : DataTypes.INTEGER,
         user_invited: DataTypes.INTEGER,
     })
