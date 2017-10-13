@@ -8,5 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         user_vk : DataTypes.INTEGER,
         registeredAt : DataTypes.TIMESTAMP,
         played_games_count : DataTypes.INTEGER,
+        user_invited: DataTypes.INTEGER,
     })
 };

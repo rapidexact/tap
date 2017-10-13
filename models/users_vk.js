@@ -11,10 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         bdate  : DataTypes.TIMESTAMP,
         city  : DataTypes.STRING,
         country  : DataTypes.STRING,
-        timezone  : DataTypes.STRING,
-        photo_50  : DataTypes.STRING,
-        photo_100  : DataTypes.STRING,
-        photo_200_orig  : DataTypes.STRING,
         has_mobile  : DataTypes.STRING,
     })
 };
