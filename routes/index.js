@@ -95,6 +95,8 @@ router.use(function (req, res, next) {
                     }).catch(err => {
                         next();
                     });
+                } else {
+                    next();
                 }
             }).catch(err => {
                 next();
