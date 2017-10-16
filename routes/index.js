@@ -92,6 +92,8 @@ router.use(function (req, res, next) {
                         //         throw 'Не удалось добавить пользователя';
                         //     });
                         // });
+                    }).catch(err => {
+                        next();
                     });
                 }
             });
