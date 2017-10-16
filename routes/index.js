@@ -16,15 +16,15 @@ const Users = sequelize.import(__dirname + "/../models/users");
 const BASE_OPEN_API_URL = 'https://api.vk.com/';
 
 Records.sync().then(() => {
-    console.log('Records table created');
+    console.log('Records table synced');
 });
 
 Users_vk.sync().then(() => {
-    console.log('Users_vk table created');
+    console.log('Users_vk table synced');
 });
 
 Users.sync().then(() => {
-    console.log('Users table created');
+    console.log('Users table synced');
 });
 
 let creds = {
@@ -39,6 +39,7 @@ function isTokenValid(session, protectedAppKey) {
     let hash = crypto.createHash('md5').update(sessionStr).digest('hex');
     return session.sig === hash;
 }
+
 function parseOpenApiCookie(cookie) {
     let values = cookie.split('&');
     let result = {};
@@ -69,28 +70,28 @@ router.use(function (req, res, next) {
                     }).then(user => {
                         next();
                         return;
-                        api.call('users.get', {
-                            user_id: session.mid,
-                            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
-                        }).then(response => {
-                            console.log(response);
-                            Users_vk.create({
-                                user_id: session.mid,
-                                nickname: response.nickname,
-                                domain: response.domain,
-                                sex: response.sex,
-                                // bdate: (Date.parse(response.bdate))toISOString(),
-                                city: response.city,
-                                country: response.country,
-                                has_mobile: response.has_mobile,
-                            }).then(userVk => {
-                                req.user = user;
-                                next();
-                            }).catch(err => {
-                                res.json({error: err, message: 'Не удалось добавить пользователя'});
-                                throw 'Не удалось добавить пользователя';
-                            });
-                        });
+                        // api.call('users.get', {
+                        //     user_id: session.mid,
+                        //     fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
+                        // }).then(response => {
+                        //     console.log(response);
+                        //     Users_vk.create({
+                        //         user_id: session.mid,
+                        //         nickname: response.nickname,
+                        //         domain: response.domain,
+                        //         sex: response.sex,
+                        //         // bdate: (Date.parse(response.bdate))toISOString(),
+                        //         city: response.city,
+                        //         country: response.country,
+                        //         has_mobile: response.has_mobile,
+                        //     }).then(userVk => {
+                        //         req.user = user;
+                        //         next();
+                        //     }).catch(err => {
+                        //         res.json({error: err, message: 'Не удалось добавить пользователя'});
+                        //         throw 'Не удалось добавить пользователя';
+                        //     });
+                        // });
                     });
                 }
             });
