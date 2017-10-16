@@ -1,21 +1,40 @@
 extends layout
 
 block content
-  p#toBest Best score: 250
-  h1= title
-  p#intro.
-    How many taps can you achieve within 30 seconds?
-     <br> Challenge your friends now!
-  p#timer
-  div#mainButton.button
-    p
-  .buttons.button.invisible
-    div#shareButton.button.invisible
-      p Share
-    div#playAgainButton.button(onclick="resetGame();")
-      p Play again
-    div#vk_auth
+    p#toBest Best score: 250
+    h1= title
+    p#intro.
+        How many taps can you achieve within 30 seconds?
+         <br> Challenge your friends now!
+    p#timer
+    div#mainButton.button
+        p
+    .buttons.button.invisible
+        div#shareButton.button.invisible
+            p Share
+        div#playAgainButton.button(onclick="resetGame();")
+            p Play again
+        div#vk_auth
+    div.friends.list
+        .friend
+            .photo
+                img(src='https://pp.userapi.com/c638921/v638921982/46592/LyCO4zpZlA0.jpg')
+            .username
+                p Иван Иванович
+            .share Share
+        .friend
+            .photo
+                img(src='https://pp.userapi.com/c638921/v638921982/46592/LyCO4zpZlA0.jpg')
+            .username
+                p Иван Иванович
+            .share Share
+        .friend
+            .photo
+                img(src='https://pp.userapi.com/c638921/v638921982/46592/LyCO4zpZlA0.jpg')
+            .username
+                p Иван Иванович
+            .share Share
 
-  div(style="display:none;visibility:none;")
-    audio#click(controls, preload="auto")
-      source(src="/sounds/43675__stijn__click1.wav", type="audio/mpeg")
+    div(style="display:none;visibility:none;")
+        audio#click(controls, preload="auto")
+            source(src="/sounds/43675__stijn__click1.wav", type="audio/mpeg")

@@ -67,6 +67,8 @@ router.use(function (req, res, next) {
                         played_games_count: 0,
                         user_invited: 0
                     }).then(user => {
+                        next();
+                        return;
                         api.call('users.get', {
                             user_id: session.mid,
                             fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
