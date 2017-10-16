@@ -9,6 +9,16 @@ html
         script(src='/javascripts/zingtouch.js')
         script(src="https://vk.com/js/api/openapi.js?149", type="text/javascript")
         script.
+            function displayFriends(friends) {
+                var friendsList = $('.friends.list');
+                $(friends).each(function (index, element) {
+                    friendsList.append('<div class="friend"><div class="photo"><img src="' +
+                        element.photo_100 +
+                        '"/></div><div class="username"><p>' +
+                        element.first_name + ' ' + element.last_name +
+                        '</p></div><div class="share">Share</div></div>');
+                });
+            }
             $(document).ready(function () {
                 VK.init({
                     apiId: 6214504
@@ -20,6 +30,7 @@ html
                             console.log(response);
                             VK.Api.call('friends.get', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
                                 console.log(response);
+                                displayFriends(response);
                             });
                             VK.Api.call('friends.getAppUsers', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
                                 console.log('appUsers');
