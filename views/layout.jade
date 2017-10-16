@@ -10,6 +10,8 @@ html
         script(src="https://vk.com/js/api/openapi.js?149", type="text/javascript")
         script.
             function displayFriends(friends) {
+                console.log('friends');
+                console.log(friends);
                 var friendsList = $('.friends.list');
                 $(friends).each(function (index, element) {
                     friendsList.append('<div class="friend"><div class="photo"><img src="' +
