@@ -13,7 +13,7 @@ html
                 console.log('friends');
                 console.log(friends);
                 var friendsList = $('.friends.list');
-                $(friends).each(function (index, element) {
+                $(friends.response).each(function (index, element) {
                     friendsList.append('<div class="friend"><div class="photo"><img src="' +
                         element.photo_100 +
                         '"/></div><div class="username"><p>' +
