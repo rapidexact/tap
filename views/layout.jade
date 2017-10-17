@@ -33,6 +33,9 @@ html
                     });
             }
             $(document).ready(function () {
+                if(!location.pathname.startsWith('/ru')){
+                    return;
+                }
                 VK.init({
                     apiId: 6214504
                 });

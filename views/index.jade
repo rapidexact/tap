@@ -15,7 +15,8 @@ block content
         div#playAgainButton.button(onclick="resetGame();")
             p Play again
         div#vk_auth
-    div.friends.list
+    if lang == 'ru'
+        div.friends.list
 
     div(style="display:none;visibility:none;")
         audio#click(controls, preload="auto")

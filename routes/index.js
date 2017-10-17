@@ -110,8 +110,9 @@ router.use(function (req, res, next) {
 });
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', {title: 'TapGame.io'});
+router.get(['/', '/:lang'], function (req, res, next) {
+    let lang = req.params.lang || 'en';
+    res.render('index', {title: 'TapGame.io', lang: lang});
 });
 
 module.exports = router;
