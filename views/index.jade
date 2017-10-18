@@ -14,9 +14,9 @@ block content
             p Share
         div#playAgainButton.button(onclick="resetGame();")
             p Play again
-
     if lang == 'ru'
-        div#vk_auth.button(onclick='vkInit()') Войти
+        div#vk_auth.button(onclick='vkInit()')
+            p Войти
         div.friends.list
 
     div(style="display:none;visibility:none;")
