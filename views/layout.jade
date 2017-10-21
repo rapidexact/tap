@@ -105,13 +105,11 @@ html
             }
 
             function fetchFriends(response) {
-                VK.Api.call('friends.get', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
-                    displayFriends(response);
-                })
-                //VK.Api.call('friends.getAppUsers', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
-                  //  console.log('appUsers');
-                  //  console.log(response);
-                //});
+                setTimeout(function () {
+                    VK.Api.call('friends.get', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
+                        displayFriends(response);
+                    })
+                },1000);
             }
 
             function vkInit() {
