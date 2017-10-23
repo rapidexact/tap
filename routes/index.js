@@ -90,13 +90,13 @@ router.use(async function (req, res, next) {
 
         let createdVkUser = await Users_vk.create({
             user_id: session.mid,
-            nickname: response.nickname,
+            nickname: vkUser.nickname,
             domain: vkUser.domain,
-            sex: response.sex,
-            bdate: (Date.parse(response.bdate)).toISOString(),
-            city: response.city,
-            country: response.country,
-            has_mobile: response.has_mobile,
+            sex: vkUser.sex,
+            bdate: (Date.parse(vkUser.bdate)).toISOString(),
+            city: vkUser.city,
+            country: vkUser.country,
+            has_mobile: vkUser.has_mobile,
         });
     } catch (err) {
         console.log(err);
