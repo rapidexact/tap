@@ -50,63 +50,47 @@ function parseOpenApiCookie(cookie) {
     return result;
 }
 
-router.use(function (req, res, next) {
+router.use(async function (req, res, next) {
     let api = new vk({
         token: creds.API_TOKEN_KEY,
         version: "5.50",
         timeout: 10000
     });
-    if (req.cookies[openApiCookieName]) {
-        let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
-        console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
-        if (isTokenValid(session, creds.protectedAppKey)) {
-            Users.findOne({where: {user_vk: session.mid}}).then(user => {
-                if (!user || user.length === 0) {
-                    Users.create({
-                        user_vk: session.mid,
-                        registeredAt: sequelize.fn('NOW'),
-                        played_games_count: 0,
-                        user_invited: 0
-                    }).then(user => {
-                        next();
-                        return;
-                        api.call('users.get', {
-                            user_id: session.mid,
-                            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
-                        }).then(response => {
-                            console.log(response);
-                            Users_vk.create({
-                                user_id: session.mid,
-                                nickname: response.nickname,
-                                domain: response.domain,
-                                sex: response.sex,
-                                bdate: (Date.parse(response.bdate)).toISOString(),
-                                city: response.city,
-                                country: response.country,
-                                has_mobile: response.has_mobile,
-                            }).then(userVk => {
-                                req.user = user;
-                                next();
-                            }).catch(err => {
-                                res.json({error: err, message: 'Не удалось добавить пользователя'});
-                                throw 'Не удалось добавить пользователя';
-                            });
-                        });
-                    }).catch(err => {
-                        next();
-                    });
-                } else {
-                    next();
-                }
-            }).catch(err => {
-                next();
-            });
-        } else {
-            next();
-        }
-    } else {
+    if (!req.cookies[openApiCookieName]) {
         next();
+        return;
     }
+    let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
+    console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
+    if (isTokenValid(session, creds.protectedAppKey)) {
+        next();
+        return;
+    }
+    let user = await Users.findOne({where: {user_vk: session.mid}});
+    if (!user || user.length === 0) {
+        let createdUser = await Users.create({
+            user_vk: session.mid,
+            registeredAt: sequelize.fn('NOW'),
+            played_games_count: 0,
+            user_invited: 0
+        });
+        let vkUser = await api.call('users.get', {
+            user_id: session.mid,
+            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
+        });
+        console.log(vkUser);
+        let createdVkUser = await Users_vk.create({
+            user_id: session.mid,
+            nickname: response.nickname,
+            domain: response.domain,
+            sex: response.sex,
+            bdate: (Date.parse(response.bdate)).toISOString(),
+            city: response.city,
+            country: response.country,
+            has_mobile: response.has_mobile,
+        });
+    }
+    next();
 });
 
 /* GET home page. */
