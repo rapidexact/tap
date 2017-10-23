@@ -85,7 +85,7 @@ router.use(async function (req, res, next) {
         let vkUser = await api.call('users.get', {
             user_id: session.mid,
             fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
-        });
+        })[0];
         console.log(vkUser);
 
         let createdVkUser = await Users_vk.create({
