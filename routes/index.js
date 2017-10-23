@@ -57,18 +57,16 @@ function parseOpenApiCookie(cookie) {
 }
 
 router.use(async function (req, res, next) {
-    if (!req.cookies[openApiCookieName]) {
-        next();
-        return;
-    }
     let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
     console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
-    if (isTokenValid(session, creds.protectedAppKey)) {
+    if (!req.cookies[openApiCookieName] || !isTokenValid(session, creds.protectedAppKey)) {
         next();
         return;
     }
+
     try {
         let user = await Users.findOne({where: {user_vk: session.mid}});
+        console.log(JSON.stringify(user));
         if (!user) {
             let createdUser = await Users.create({
                 user_vk: session.mid,
