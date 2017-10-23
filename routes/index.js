@@ -93,7 +93,7 @@ router.use(async function (req, res, next) {
             nickname: vkUser.nickname,
             domain: vkUser.domain,
             sex: vkUser.sex,
-            bdate: (Date.parse(vkUser.bdate)).toISOString(),
+            bdate: vkUser.bdate,
             city: vkUser.city,
             country: vkUser.country,
             has_mobile: vkUser.has_mobile,
