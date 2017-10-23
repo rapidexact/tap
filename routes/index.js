@@ -67,34 +67,32 @@ router.use(async function (req, res, next) {
         next();
         return;
     }
-    try{
-
-
-    let user = await Users.findOne({where: {user_vk: session.mid}});
-    if (!user || user.length === 0) {
-        let createdUser = await Users.create({
-            user_vk: session.mid,
-            registeredAt: sequelize.fn('NOW'),
-            played_games_count: 0,
-            user_invited: 0
-        });
-        let vkUser = await api.call('users.get', {
-            user_id: session.mid,
-            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
-        });
-        console.log(vkUser);
-        let createdVkUser = await Users_vk.create({
-            user_id: session.mid,
-            nickname: response.nickname,
-            domain: vkUser.domain,
-            sex: response.sex,
-            bdate: (Date.parse(response.bdate)).toISOString(),
-            city: response.city,
-            country: response.country,
-            has_mobile: response.has_mobile,
-        });
-    }
-    } catch (err){
+    try {
+        let user = await Users.findOne({where: {user_vk: session.mid}});
+        if (!user) {
+            let createdUser = await Users.create({
+                user_vk: session.mid,
+                registeredAt: sequelize.fn('NOW'),
+                played_games_count: 0,
+                user_invited: 0
+            });
+            let vkUser = await api.call('users.get', {
+                user_id: session.mid,
+                fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
+            });
+            console.log(vkUser);
+            let createdVkUser = await Users_vk.create({
+                user_id: session.mid,
+                nickname: response.nickname,
+                domain: vkUser.domain,
+                sex: response.sex,
+                bdate: (Date.parse(response.bdate)).toISOString(),
+                city: response.city,
+                country: response.country,
+                has_mobile: response.has_mobile,
+            });
+        }
+    } catch (err) {
         console.log(err);
     }
     next();
