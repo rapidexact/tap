@@ -67,6 +67,9 @@ router.use(async function (req, res, next) {
         next();
         return;
     }
+    try{
+
+
     let user = await Users.findOne({where: {user_vk: session.mid}});
     if (!user || user.length === 0) {
         let createdUser = await Users.create({
@@ -90,6 +93,9 @@ router.use(async function (req, res, next) {
             country: response.country,
             has_mobile: response.has_mobile,
         });
+    }
+    } catch (err){
+        console.log(err);
     }
     next();
 });
