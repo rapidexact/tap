@@ -34,6 +34,12 @@ let creds = {
 };
 let openApiCookieName = 'vk_app_' + creds.appId;
 
+let api = new vk({
+    token: creds.API_TOKEN_KEY,
+    version: "5.50",
+    timeout: 10000
+});
+
 function isTokenValid(session, protectedAppKey) {
     let sessionStr = `expire=${session.expire}mid=${session.mid}secret=${session.secret}sid=${session.sid}${protectedAppKey}`;
     let hash = crypto.createHash('md5').update(sessionStr).digest('hex');
@@ -51,11 +57,6 @@ function parseOpenApiCookie(cookie) {
 }
 
 router.use(async function (req, res, next) {
-    let api = new vk({
-        token: creds.API_TOKEN_KEY,
-        version: "5.50",
-        timeout: 10000
-    });
     if (!req.cookies[openApiCookieName]) {
         next();
         return;
@@ -82,7 +83,7 @@ router.use(async function (req, res, next) {
         let createdVkUser = await Users_vk.create({
             user_id: session.mid,
             nickname: response.nickname,
-            domain: response.domain,
+            domain: createdVkUser.domain,
             sex: response.sex,
             bdate: (Date.parse(response.bdate)).toISOString(),
             city: response.city,
