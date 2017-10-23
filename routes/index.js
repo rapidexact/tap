@@ -58,6 +58,7 @@ function parseOpenApiCookie(cookie) {
 
 router.use(async function (req, res, next) {
     if (!req.cookies[openApiCookieName]) {
+        console.log('No cookies. Skipping...');
         next();
         return;
     }
