@@ -70,28 +70,28 @@ router.use(function (req, res, next) {
                     }).then(user => {
                         next();
                         return;
-                        // api.call('users.get', {
-                        //     user_id: session.mid,
-                        //     fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
-                        // }).then(response => {
-                        //     console.log(response);
-                        //     Users_vk.create({
-                        //         user_id: session.mid,
-                        //         nickname: response.nickname,
-                        //         domain: response.domain,
-                        //         sex: response.sex,
-                        //         // bdate: (Date.parse(response.bdate))toISOString(),
-                        //         city: response.city,
-                        //         country: response.country,
-                        //         has_mobile: response.has_mobile,
-                        //     }).then(userVk => {
-                        //         req.user = user;
-                        //         next();
-                        //     }).catch(err => {
-                        //         res.json({error: err, message: 'Не удалось добавить пользователя'});
-                        //         throw 'Не удалось добавить пользователя';
-                        //     });
-                        // });
+                        api.call('users.get', {
+                            user_id: session.mid,
+                            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen'
+                        }).then(response => {
+                            console.log(response);
+                            Users_vk.create({
+                                user_id: session.mid,
+                                nickname: response.nickname,
+                                domain: response.domain,
+                                sex: response.sex,
+                                bdate: (Date.parse(response.bdate)).toISOString(),
+                                city: response.city,
+                                country: response.country,
+                                has_mobile: response.has_mobile,
+                            }).then(userVk => {
+                                req.user = user;
+                                next();
+                            }).catch(err => {
+                                res.json({error: err, message: 'Не удалось добавить пользователя'});
+                                throw 'Не удалось добавить пользователя';
+                            });
+                        });
                     }).catch(err => {
                         next();
                     });
