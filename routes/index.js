@@ -57,9 +57,14 @@ function parseOpenApiCookie(cookie) {
 }
 
 router.use(async function (req, res, next) {
+    if (!req.cookies[openApiCookieName]) {
+        next();
+        return;
+    }
+
     let session = parseOpenApiCookie(req.cookies[openApiCookieName]);
     console.log(isTokenValid(session, creds.protectedAppKey) ? 'User token is valid' : 'User token is invalid');
-    if (!req.cookies[openApiCookieName] || !isTokenValid(session, creds.protectedAppKey)) {
+    if (!isTokenValid(session, creds.protectedAppKey)) {
         next();
         return;
     }
