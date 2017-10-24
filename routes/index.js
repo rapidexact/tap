@@ -9,15 +9,10 @@ const vk = require('vk-call').vk;
 
 const sequelize = new Sequelize(dbConfig.connectUrl);
 
-const Records = sequelize.import(__dirname + "/../models/records");
 const Users_vk = sequelize.import(__dirname + "/../models/users_vk");
 const Users = sequelize.import(__dirname + "/../models/users");
 
 const BASE_OPEN_API_URL = 'https://api.vk.com/';
-
-Records.sync().then(() => {
-    console.log('Records table synced');
-});
 
 Users_vk.sync().then(() => {
     console.log('Users_vk table synced');
