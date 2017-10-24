@@ -80,7 +80,8 @@ router.use(async function (req, res, next) {
 
         let vkUser = await api.call('users.get', {
             user_id: session.mid,
-            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen, photo_200, nickname, counters, first_name_nom, last_name_nom'
+            fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen, photo_200, nickname, counters, first_name_nom, last_name_nom',
+            access_token: session,
         });
         console.log(vkUser);
 
@@ -92,8 +93,8 @@ router.use(async function (req, res, next) {
             domain: vkUser.domain,
             sex: vkUser.sex,
             bdate: vkUser.bdate,
-            city: vkUser.city,
-            country: vkUser.country,
+            city: vkUser.city.title,
+            country: vkUser.country.title,
             has_mobile: vkUser.has_mobile,
             name: vkUser.first_name_nom + " " + vkUser.last_name_nom + " " + vkUser.nickname,
             photo: vkUser.photo_200,
