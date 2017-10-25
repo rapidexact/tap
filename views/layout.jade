@@ -100,12 +100,15 @@ html
                         element.photo_100 +
                         '"/></div><div class="username"><p>' +
                         element.first_name + ' ' + element.last_name +
-                        '</p></div><div class="share" onclick="sendMessage(' + element.id + ')">Share</div></div>');
+                        '</p></div><div class="share" onclick="sendMessage(' + element.uid + ')">Share</div></div>');
                 });
             }
 
             function sendMessage(id) {
                 console.log(id);
+                VK.Api.call('messages.send', {user_id: id, message: 'Hello !'}, function (response) {
+                    console.log(response);
+                });
             }
 
             function fetchFriends(response) {
