@@ -5,6 +5,8 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true,
         },
+        first_name: DataTypes.STRING,
+        last_name: DataTypes.STRING,
         nickname: DataTypes.STRING,
         domain: DataTypes.STRING,
         sex: DataTypes.STRING,
@@ -12,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         city: DataTypes.STRING,
         country: DataTypes.STRING,
         has_mobile: DataTypes.STRING,
-        name: DataTypes.STRING,
         photo: DataTypes.STRING,
         friends_count: DataTypes.INTEGER,
     })

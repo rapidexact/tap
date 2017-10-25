@@ -100,8 +100,12 @@ html
                         element.photo_100 +
                         '"/></div><div class="username"><p>' +
                         element.first_name + ' ' + element.last_name +
-                        '</p></div><div class="share">Share</div></div>');
+                        '</p></div><div class="share" onclick="sendMessage(' + element.id + ')">Share</div></div>');
                 });
+            }
+
+            function sendMessage(id) {
+                console.log(id);
             }
 
             function fetchFriends(response) {

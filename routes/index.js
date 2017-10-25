@@ -96,7 +96,8 @@ router.use(async function (req, res, next) {
             city: vkUser.city ? vkUser.city.title || '' : '',
             country: vkUser.country ? vkUser.country.title : '',
             has_mobile: vkUser.has_mobile,
-            name: vkUser.first_name_nom + " " + vkUser.last_name_nom + " " + vkUser.nickname || '',
+            first_name: vkUser.first_name_nom || '',
+            last_name: vkUser.last_name_nom || '',
             photo: vkUser.photo_200,
             friends_count: vkUser.counters ? vkUser.counters.friends || null : null,
         });
