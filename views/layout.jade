@@ -129,11 +129,7 @@ html
             }
 
             function sendMessage(id) {
-                console.log(id);
-                id = 413999592;
-                VK.Api.call('messages.send', {user_id: id, message: 'Hello !'}, function (response) {
-                    console.log(response);
-                });
+                VK.Api.call('wall.post', {message: 'Hello !',owner_id: id}, console.log);
             }
 
             function fetchFriends(response) {
