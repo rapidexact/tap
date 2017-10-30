@@ -9,15 +9,17 @@ block content
     p#timer
     div#mainButton.button
         p
+    if lang == 'ru'
+        div#vk_auth.button(style="display:none", onclick='vkInit()')
+            p Войти
+
     .buttons.button.invisible
         div#shareButton.button.invisible
             p Share
         div#playAgainButton.button(onclick="resetGame();")
             p Play again
-    if lang == 'ru'
-        div#vk_auth.button(onclick='vkInit()')
-            p Войти
-        div.friends.list
+    div.friends.invite.list
+
 
     div(style="display:none;visibility:none;")
         audio#click(controls, preload="auto")

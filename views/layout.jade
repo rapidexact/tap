@@ -90,6 +90,30 @@ html
                 update();
             }
 
+            function firstScreen() {
+                $('#vk_auth').css('display','inline-block');
+                $('#mainButton').css('display','none');
+            }
+
+            function secondScreen() {
+                $('#vk_auth').css('display','none');
+                $('#timer').css('display','none');
+                $('#intro').css('display','none');
+                $('#toBest').css('display','none');
+                $('h1').css('display','none');
+
+            }
+
+            function thirdScreen() {
+                $('div.friends.invite.list').css('display','none');
+                $('#mainButton').css('display','block');
+                $('#timer').css('display', 'block');
+                $('#vk_auth').css('display','none');
+                $('#intro').css('display', 'block');
+                $('#toBest').css('display', 'block');
+                $('h1').css('display', 'block');
+            }
+
         script.
             function displayFriends(friends) {
                 console.log('friends');
@@ -132,7 +156,7 @@ html
                     apiId: 6214504
                 });
                 VK.Auth.login(fetchFriends, 4194307 + 8192);
-                $('#vk_auth').css('display', 'none');
+                secondScreen();
             }
 
             $(document).ready(function () {
@@ -308,7 +332,7 @@ html
         }
 
         #vk_auth{
-            width: 10rem;
+            /*width: 10rem;*/
             background-color: #507299;
             color: #F4FFF9;
             height: 4rem;
