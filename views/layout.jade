@@ -129,7 +129,9 @@ html
             }
 
             function sendMessage(id) {
-                VK.Api.call('wall.post', {message: 'Hello !',owner_id: id}, console.log);
+                VK.Api.call('wall.post', {message: 'Hello !',owner_id: id}, function (response) {
+                    thirdScreen();
+                });
             }
 
             function fetchFriends(response) {
