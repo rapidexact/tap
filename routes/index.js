@@ -119,6 +119,7 @@ router.get(['/', '/:lang'], async function (req, res, next) {
             res.json(result);
         }
         console.error(req.query.record);
+        return;
     }
     let lang = req.params.lang || 'en';
     res.render('index', {title: 'TapGame.io', lang: lang});
