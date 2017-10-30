@@ -48,6 +48,7 @@ html
             function setUserBest(best) {
                 userBestScore = best;
                 localStorage.setItem('userBestScore', userBestScore);
+                saveRecord(best);
             }
 
             function timer() {
@@ -150,6 +151,18 @@ html
                     $(document.body).append(JSON.stringify(response));
                     displayFriends(response);
                 })
+            }
+
+            function saveRecord(record) {
+                $.ajax(location.origin, {
+                    data: {record: record},
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    fail: function (response) {
+                        console.log(response);
+                    }
+                });
             }
 
             function vkInit() {

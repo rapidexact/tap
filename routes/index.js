@@ -67,6 +67,7 @@ router.use(async function (req, res, next) {
 
     try {
         let user = await Users.findOne({where: {user_vk: session.mid}});
+        req.user = user;
         console.log(JSON.stringify(user));
         if (!user) {
             let createdUser = await Users.create({
@@ -108,7 +109,16 @@ router.use(async function (req, res, next) {
 });
 
 /* GET home page. */
-router.get(['/', '/:lang'], function (req, res, next) {
+router.get(['/', '/:lang'], async function (req, res, next) {
+    if (req.query.record && req.user) {
+        if (+req.user.best_result > +req.query.record) {
+            let result = await req.user.update({
+                    best_result: +req.query.record,
+                });
+            res.json(result);
+        }
+        console.error(req.query.record);
+    }
     let lang = req.params.lang || 'en';
     res.render('index', {title: 'TapGame.io', lang: lang});
 });
