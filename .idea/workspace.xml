@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0082f1-dca1-42b9-b5d2-b808a8f8cee8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,11 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="112" column="39" lean-forward="true" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+            <state relative-caret-position="167">
+              <caret line="112" column="60" lean-forward="false" selection-start-line="112" selection-start-column="60" selection-end-line="112" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -69,7 +67,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="194">
@@ -131,6 +129,7 @@
       <find>share</find>
       <find>sendMessage</find>
       <find>fetc</find>
+      <find>createdUs</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,8 +149,8 @@
         <option value="$PROJECT_DIR$/models/users.js" />
         <option value="$PROJECT_DIR$/models/users_vk.js" />
         <option value="$PROJECT_DIR$/views/index.jade" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/layout.jade" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -451,12 +450,12 @@
       <workItem from="1509223408492" duration="613000" />
       <workItem from="1509268161101" duration="983000" />
       <workItem from="1509314604182" duration="562000" />
-      <workItem from="1509386095219" duration="6247000" />
+      <workItem from="1509386095219" duration="6945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113471000" />
+    <option name="totallyTimeSpent" value="114169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1370" height="744" extended-state="0" />
@@ -842,10 +841,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="112" column="39" lean-forward="true" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+        <state relative-caret-position="194">
+          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -866,10 +865,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+        <state relative-caret-position="167">
+          <caret line="112" column="60" lean-forward="false" selection-start-line="112" selection-start-column="60" selection-end-line="112" selection-end-column="60" />
           <folding />
         </state>
       </provider>

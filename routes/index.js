@@ -67,10 +67,9 @@ router.use(async function (req, res, next) {
 
     try {
         let user = await Users.findOne({where: {user_vk: session.mid}});
-        req.user = user;
         console.log(JSON.stringify(user));
         if (!user) {
-            let createdUser = await Users.create({
+            user = await Users.create({
                 user_vk: session.mid,
                 registeredAt: sequelize.fn('NOW'),
                 played_games_count: 0,
@@ -78,6 +77,8 @@ router.use(async function (req, res, next) {
                 best_result: 0,
             });
         }
+
+        req.user = user;
 
         let vkUser = await api.call('users.get', {
             user_id: session.mid,
@@ -113,8 +114,8 @@ router.get(['/', '/:lang'], async function (req, res, next) {
     if (req.query.record && req.user) {
         if (+req.user.best_result > +req.query.record) {
             let result = await req.user.update({
-                    best_result: +req.query.record,
-                });
+                best_result: +req.query.record,
+            });
             res.json(result);
         }
         console.error(req.query.record);
