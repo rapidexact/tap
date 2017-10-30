@@ -91,24 +91,24 @@ html
             }
 
             function firstScreen() {
-                $('#vk_auth').css('display','inline-block');
-                $('#mainButton').css('display','none');
+                $('#vk_auth').css('display', 'inline-block');
+                $('#mainButton').css('display', 'none');
             }
 
             function secondScreen() {
-                $('#vk_auth').css('display','none');
-                $('#timer').css('display','none');
-                $('#intro').css('display','none');
-                $('#toBest').css('display','none');
-                $('h1').css('display','none');
+                $('#vk_auth').css('display', 'none');
+                $('#timer').css('display', 'none');
+                $('#intro').css('display', 'none');
+                $('#toBest').css('display', 'none');
+                $('h1').css('display', 'none');
 
             }
 
             function thirdScreen() {
-                $('div.friends.invite.list').css('display','none');
-                $('#mainButton').css('display','block');
+                $('div.friends.invite.list').css('display', 'none');
+                $('#mainButton').css('display', 'block');
                 $('#timer').css('display', 'block');
-                $('#vk_auth').css('display','none');
+                $('#vk_auth').css('display', 'none');
                 $('#intro').css('display', 'block');
                 $('#toBest').css('display', 'block');
                 $('h1').css('display', 'block');
@@ -129,17 +129,20 @@ html
             }
 
             function sendMessage(id) {
-                VK.Api.call('wall.post', {message: 'Hello !',owner_id: id}, function (response) {
+                VK.Api.call('wall.post', {message: 'Hello !', owner_id: id}, function (response) {
                     thirdScreen();
                 });
             }
 
             function fetchFriends(response) {
                 setTimeout(function () {
-                    VK.Api.call('friends.get', {fields: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'}, function (response) {
+                    VK.Api.call('friends.get', {
+                        count: 20,
+                        fields: 'nickname, photo_50, photo_100, photo_200_orig, online, can_write_private_message, can_see_all_posts, can_post'
+                    }, function (response) {
                         displayFriends(response);
                     })
-                },1000);
+                }, 1000);
             }
 
             function f() {
@@ -160,16 +163,16 @@ html
             $(document).ready(function () {
                 firstScreen();
                 /* if (!location.pathname.startsWith('/ru')) {
-                    return;
-                }
+                 return;
+                 }
 
-                VK.Auth.getLoginStatus(function (response) {
-                    if (response.status === 'unknown') {
-                        VK.Auth.login(fetchFriends, 4194307);
-                    } else {
-                        fetchFriends();
-                    }
-                }); */
+                 VK.Auth.getLoginStatus(function (response) {
+                 if (response.status === 'unknown') {
+                 VK.Auth.login(fetchFriends, 4194307);
+                 } else {
+                 fetchFriends();
+                 }
+                 }); */
             });
 
     style.
@@ -264,7 +267,6 @@ html
             visibility: hidden;
         }
 
-
         .friends.list p {
             margin: 0;
             height: 2rem;
@@ -272,11 +274,11 @@ html
             line-height: 2rem;
         }
 
-        .friends.list .friend div{
+        .friends.list .friend div {
             float: left;
         }
 
-        .friends.list .friend{
+        .friends.list .friend {
             display: inline-block;
             width: 100%;
             padding: 1rem 0;
@@ -290,14 +292,14 @@ html
             border-radius: 100px;
         }
 
-        .friends.list .username p{
+        .friends.list .username p {
             line-height: 2rem;
             height: 2rem;
             font-size: 1rem;
 
         }
 
-        .friends.list .username{
+        .friends.list .username {
             width: 6rem;
         }
 
@@ -316,21 +318,19 @@ html
             font-size: 1rem;
         }
 
-
-
-        .friends.list .friend{
+        .friends.list .friend {
             width: 17rem;
             margin: 0 auto;
             border-bottom: 0.1rem solid black;
         }
 
-        #vk_auth p{
+        #vk_auth p {
             line-height: 4rem;
             font-size: 2rem;
             height: 4rem;
         }
 
-        #vk_auth{
+        #vk_auth {
             /*width: 10rem;*/
             background-color: #507299;
             color: #F4FFF9;
