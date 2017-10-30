@@ -92,11 +92,17 @@ html
             }
 
             function firstScreen() {
+                if (location.pathname.startsWith('/ru')){
+                    return;
+                }
                 $('#vk_auth').css('display', 'inline-block');
                 $('#mainButton').css('display', 'none');
             }
 
             function secondScreen() {
+                if (location.pathname.startsWith('/ru')) {
+                    return;
+                }
                 $('#vk_auth').css('display', 'none');
                 $('#timer').css('display', 'none');
                 $('#intro').css('display', 'none');
@@ -106,6 +112,9 @@ html
             }
 
             function thirdScreen() {
+                if (location.pathname.startsWith('/ru')) {
+                    return;
+                }
                 $('div.friends.invite.list').css('display', 'none');
                 $('#mainButton').css('display', 'block');
                 $('#timer').css('display', 'block');
