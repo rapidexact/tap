@@ -112,7 +112,7 @@ router.use(async function (req, res, next) {
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
     if (req.query.record && req.user) {
-        if (+req.user.best_result > +req.query.record) {
+        if (+req.query.record > +req.user.best_result) {
             let result = await req.user.update({
                 best_result: +req.query.record,
             });
