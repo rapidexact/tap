@@ -117,12 +117,12 @@ router.use(async function (req, res, next) {
 });
 
 async function getFriendsGamers(user) {
-    let vkMutualUsers = await api.call('friends.getMutual', {
-        access_token: user.session,
-        user_id: session.mid,
-        session: user.session
-    });
-    console.log(vkMutualUsers);
+    // let vkMutualUsers = await api.call('friends.getMutual', {
+    //     access_token: user.session,
+    //     user_id: user.session.mid,
+    //     session: user.session
+    // });
+    // console.log(vkMutualUsers);
     let res = await Users.findAll({where: {user_vk: [413999592]}});
     return {data: res, method: 'getFriendsGamers', mutual: vkMutualUsers};
 }
