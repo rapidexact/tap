@@ -136,7 +136,7 @@ function authUser(res) {
     res.end();
 }
 
-function f(code, res) {
+function f(code, res, user) {
     let vkMutualUsers = api.call('friends.getMutual', {
         access_token: code,
         user_id: user.session.mid,
@@ -162,7 +162,7 @@ router.get(['/', '/:lang'], async function (req, res, next) {
                     break;
                 case 'vkAuth':
                     console.log('vkAuth');
-                    f(req.query.code, res);
+                    f(req.query.code, res, req.user);
                     return;
                     break;
             }
