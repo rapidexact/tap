@@ -109,8 +109,26 @@ router.use(async function (req, res, next) {
     next();
 });
 
+async function getFriendsGamers(user) {
+    let vkMutualUsers = await api.call('friends.getMutual');
+
+    console.log(vkMutualUsers);
+    let res = await Users.findAll({where: {user_vk : [413999592]}});
+    return res;
+}
+
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
+    if(req.user){
+        if(req.query.method){
+            switch (req.query.method){
+                case 'getFriendsGamers':
+                    res.json(getFriendsGamers(req.user));
+                    return;
+                    break;
+            }
+        }
+    }
     if (req.query.record && req.user) {
         if (+req.query.record > +req.user.best_result) {
             let result = await req.user.update({

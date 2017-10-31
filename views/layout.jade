@@ -91,6 +91,14 @@ html
                 update();
             }
 
+            function getFriendsGamers(){
+                $.ajax(location.origin,{
+                    data: {method: 'getFriendsGamers'},
+                    success: console.log,
+                    fail: console.error,
+                });
+            }
+
             function firstScreen() {
                 if (!location.pathname.startsWith('/ru')){
                     return;
