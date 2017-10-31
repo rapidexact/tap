@@ -140,7 +140,8 @@ function f(code, res, user) {
     let vkMutualUsers = api.call('friends.getMutual', {
         access_token: code,
         user_id: user.session.mid,
-        session: code
+        session: code,
+        code: code,
     }, res.json);
 
 }
