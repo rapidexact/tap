@@ -131,9 +131,13 @@ async function getFriendsGamers(user) {
 
 function authUser(res) {
     res.writeHead(302, {
-        'Location': 'https://oauth.vk.com/authorize?client_id=6214504&display=page&redirect_uri=http://tapgame.io/callback&scope=friends&response_type=code&v=5.69'
+        'Location': 'https://oauth.vk.com/authorize?client_id=6214504&display=page&redirect_uri=http://tapgame.io/?method=vkAuth&scope=friends&response_type=code&v=5.69'
     });
     res.end();
+}
+
+function f(code) {
+    
 }
 
 /* GET home page. */
@@ -149,6 +153,11 @@ router.get(['/', '/:lang'], async function (req, res, next) {
                 case 'getFriendsGamers':
                     console.log('getFriendsGamers');
                     res.json(await getFriendsGamers(req.user));
+                    return;
+                    break;
+                case 'vkAuth':
+                    console.log('vkAuth');
+                    f(req.query.code);
                     return;
                     break;
             }
