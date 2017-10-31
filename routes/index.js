@@ -65,6 +65,7 @@ router.use(async function (req, res, next) {
         return;
     }
 
+
     try {
         let user = await Users.findOne({where: {user_vk: session.mid}});
         console.log(JSON.stringify(user));
@@ -79,6 +80,7 @@ router.use(async function (req, res, next) {
         }
 
         req.user = user;
+        req.user.session = session;
 
         let vkUser = await api.call('users.get', {
             user_id: session.mid,
@@ -115,7 +117,7 @@ router.use(async function (req, res, next) {
 });
 
 async function getFriendsGamers(user) {
-    let vkMutualUsers = await api.call('friends.getMutual');
+    let vkMutualUsers = await api.call('friends.getMutual', {access_token: user.session, user_id: session.mid});
     console.log(vkMutualUsers);
     let res = await Users.findAll({where: {user_vk: [413999592]}});
     return {data: res, method: 'getFriendsGamers', mutual: vkMutualUsers};
