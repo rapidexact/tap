@@ -127,7 +127,7 @@ router.get(['/', '/:lang'], async function (req, res, next) {
         if (req.query.method) {
             switch (req.query.method) {
                 case 'getFriendsGamers':
-                    res.json(getFriendsGamers(req.user));
+                    res.json(await getFriendsGamers(req.user));
                     return;
                     break;
             }
