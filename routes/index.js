@@ -136,7 +136,7 @@ function authUser(res) {
     res.end();
 }
 
-async function f(code, res) {
+function f(code, res) {
     let vkMutualUsers = api.call('friends.getMutual', {
         access_token: code,
         user_id: user.session.mid,
