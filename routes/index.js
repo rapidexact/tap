@@ -114,7 +114,7 @@ async function getFriendsGamers(user) {
 
     console.log(vkMutualUsers);
     let res = await Users.findAll({where: {user_vk : [413999592]}});
-    return res;
+    return {data: res, method: 'getFriendsGamers'};
 }
 
 /* GET home page. */
