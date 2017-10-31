@@ -136,13 +136,17 @@ function authUser(res) {
     res.end();
 }
 
-function f(code) {
-    
+async function f(code) {
+    let vkMutualUsers = await api.call('friends.getMutual', {
+        access_token: code,
+        user_id: user.session.mid,
+        session: code
+    });
 }
 
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
-    if(req.params.lang === 'ru'){
+    if (req.params.lang === 'ru') {
         authUser(res);
         return;
     }
