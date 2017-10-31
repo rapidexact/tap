@@ -89,39 +89,43 @@ router.use(async function (req, res, next) {
 
         vkUser = vkUser[0];
 
-        let createdVkUser = await Users_vk.create({
-            user_id: session.mid,
-            nickname: vkUser.nickname,
-            domain: vkUser.domain,
-            sex: vkUser.sex,
-            bdate: vkUser.bdate,
-            city: vkUser.city ? vkUser.city.title || '' : '',
-            country: vkUser.country ? vkUser.country.title : '',
-            has_mobile: vkUser.has_mobile,
-            first_name: vkUser.first_name_nom || '',
-            last_name: vkUser.last_name_nom || '',
-            photo: vkUser.photo_200,
-            friends_count: vkUser.counters ? vkUser.counters.friends || null : null,
-        });
+        let createdVkUser = await Users_vk.find({where: {user_id: session.mid}});
+        if (!createdVkUser) {
+            createdVkUser = await Users_vk.create({
+                user_id: session.mid,
+                nickname: vkUser.nickname,
+                domain: vkUser.domain,
+                sex: vkUser.sex,
+                bdate: vkUser.bdate,
+                city: vkUser.city ? vkUser.city.title || '' : '',
+                country: vkUser.country ? vkUser.country.title : '',
+                has_mobile: vkUser.has_mobile,
+                first_name: vkUser.first_name_nom || '',
+                last_name: vkUser.last_name_nom || '',
+                photo: vkUser.photo_200,
+                friends_count: vkUser.counters ? vkUser.counters.friends || null : null,
+            });
+        }
+
     } catch (err) {
         console.log(err);
+        next();
     }
     next();
 });
 
 async function getFriendsGamers(user) {
     let vkMutualUsers = await api.call('friends.getMutual');
-
     console.log(vkMutualUsers);
-    let res = await Users.findAll({where: {user_vk : [413999592]}});
-    return {data: res, method: 'getFriendsGamers', mutual : vkMutualUsers};
+    let res = await Users.findAll({where: {user_vk: [413999592]}});
+    return {data: res, method: 'getFriendsGamers', mutual: vkMutualUsers};
 }
 
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
-    if(req.user){
-        if(req.query.method){
-            switch (req.query.method){
+    if (req.user) {
+        if (req.query.method) {
+            switch (req.query.method) {
                 case 'getFriendsGamers':
                     res.json(getFriendsGamers(req.user));
                     return;
