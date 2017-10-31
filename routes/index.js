@@ -137,11 +137,12 @@ function authUser(res) {
 }
 
 async function f(code) {
-    let vkMutualUsers = await api.call('friends.getMutual', {
+    let vkMutualUsers = api.call('friends.getMutual', {
         access_token: code,
         user_id: user.session.mid,
         session: code
-    });
+    }, console.log);
+
 }
 
 /* GET home page. */
