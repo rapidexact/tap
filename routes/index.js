@@ -53,6 +53,7 @@ function parseOpenApiCookie(cookie) {
 
 router.use(async function (req, res, next) {
     if (!req.cookies[openApiCookieName]) {
+
         console.log('No cookies. Skipping...');
         next();
         return;
@@ -87,6 +88,7 @@ router.use(async function (req, res, next) {
             fields: 'nickname, domain, sex, bdate, city, country, timezone, has_mobile, contacts, education, online, relation, last_seen, photo_200, nickname, counters, first_name_nom, last_name_nom',
             access_token: session,
         });
+
         console.log(vkUser);
 
         vkUser = vkUser[0];
@@ -127,8 +129,20 @@ async function getFriendsGamers(user) {
     return {data: res, method: 'getFriendsGamers', mutual: ''};
 }
 
+function authUser(res) {
+    res.writeHead(302, {
+        'Location': 'https://oauth.vk.com/authorize?client_id=6214504&display=page&redirect_uri=http://tapgame.io/callback&scope=friends&response_type=code&v=5.69'
+    });
+    res.end();
+}
+
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
+    if(req.params.lang === 'ru'){
+        authUser(res);
+        return;
+    }
+
     if (req.user) {
         if (req.query.method) {
             switch (req.query.method) {

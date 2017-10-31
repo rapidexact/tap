@@ -20,8 +20,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="125" column="13" lean-forward="false" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
+            <state relative-caret-position="150">
+              <caret line="142" column="15" lean-forward="false" selection-start-line="142" selection-start-column="15" selection-end-line="142" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/vk-call/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -70,8 +80,8 @@
       <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="52" />
+            <state relative-caret-position="1946">
+              <caret line="188" column="29" lean-forward="false" selection-start-line="188" selection-start-column="24" selection-end-line="188" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -122,6 +132,9 @@
       <find>createdUs</find>
       <find>location</find>
       <find>access</find>
+      <find>login</find>
+      <find>api</find>
+      <find>VK</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -237,6 +250,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="node_modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vk-call" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -446,12 +491,12 @@
       <workItem from="1509268161101" duration="983000" />
       <workItem from="1509314604182" duration="562000" />
       <workItem from="1509386095219" duration="7799000" />
-      <workItem from="1509475169014" duration="5166000" />
+      <workItem from="1509475169014" duration="7755000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120189000" />
+    <option name="totallyTimeSpent" value="122778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1370" height="744" extended-state="0" />
@@ -767,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vk-call/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="98" column="13" lean-forward="true" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/response.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1504">
@@ -814,14 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="95" column="52" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -846,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vk-call/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/users_vk.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -862,10 +884,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1946">
+          <caret line="188" column="29" lean-forward="false" selection-start-line="188" selection-start-column="24" selection-end-line="188" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vk-call/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1141">
+          <caret line="92" column="22" lean-forward="false" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/vk-call/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="125" column="13" lean-forward="false" selection-start-line="125" selection-start-column="13" selection-end-line="125" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="142" column="15" lean-forward="false" selection-start-line="142" selection-start-column="15" selection-end-line="142" selection-end-column="15" />
           <folding />
         </state>
       </provider>
