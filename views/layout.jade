@@ -148,7 +148,7 @@ html
                     $.getJSON({
                         url: '/getFriendsGamers',
                         method: 'POST',
-                        data: {ids: response},
+                        data: {'ids': response},
                         success: showPlayedFriends
                     });
                 })
