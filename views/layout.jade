@@ -91,8 +91,8 @@ html
                 update();
             }
 
-            function getFriendsGamers(){
-                $.ajax(location.origin,{
+            function getFriendsGamers() {
+                $.ajax(location.origin, {
                     data: {method: 'getFriendsGamers'},
                     success: console.log,
                     fail: console.error,
@@ -100,11 +100,12 @@ html
             }
 
             function firstScreen() {
-                if (!location.pathname.startsWith('/ru')){
+                if (!location.pathname.startsWith('/ru')) {
                     return;
                 }
                 $('#vk_auth').css('display', 'inline-block');
                 $('#mainButton').css('display', 'none');
+                $('.friends.played.list').css('display', 'none');
             }
 
             function secondScreen() {
@@ -116,6 +117,22 @@ html
                 $('#intro').css('display', 'none');
                 $('#toBest').css('display', 'none');
                 $('h1').css('display', 'none');
+                $('.friends.played.list').css('display', 'none');
+
+            }
+
+            function showPlayedFriends(friends) {
+                console.log('showPlayedFriends', friends.data)
+                var resHTML = '';
+                for (var i = 0; i < friends.data.length; i++) {
+                    resHTML += '<div class="friend"><div class="photo"><img src="' +
+                        friends.data[i].photo +
+                        '"/></div><div class="username"><p>' +
+                        friends.data[i].users_vk.first_name + ' ' + friends.data[i].users_vk.last_name +
+                        '</p></div><div class="best-result">' + friends.data[i].best_result + '</div></div>';
+                }
+
+                $('.friends.played.list').html(resHTML);
 
             }
 
@@ -123,8 +140,24 @@ html
                 if (!location.pathname.startsWith('/ru')) {
                     return;
                 }
+
+                VK.Api.call('friends.getAppUsers', {
+                    count: 20,
+                }, function (response) {
+                    console.log('friends.getAppUsers',response);
+                    $.getJSON({
+                        url: '/getFriendsGamers',
+                        method: 'POST',
+                        data: {ids: response},
+                        success: showPlayedFriends
+                    });
+                })
+
+
+
                 $('div.friends.invite.list').css('display', 'none');
                 $('#mainButton').css('display', 'block');
+                $('.friends.played.list').css('display', 'block');
                 $('#timer').css('display', 'block');
                 $('#vk_auth').css('display', 'none');
                 $('#intro').css('display', 'block');
@@ -153,14 +186,12 @@ html
             }
 
             function fetchFriends(response) {
-                setTimeout(function () {
                     VK.Api.call('friends.get', {
                         count: 20,
                         fields: 'nickname, photo_50, photo_100, photo_200_orig, online, can_write_private_message, can_see_all_posts, can_post'
                     }, function (response) {
                         displayFriends(response);
                     })
-                }, 1000);
             }
 
             function f() {
@@ -331,6 +362,11 @@ html
 
         .friends.list .username {
             width: 6rem;
+        }
+
+        .friend .best-result{
+            line-height: 4rem;
+            float: right !important;
         }
 
         .friends.list .share {

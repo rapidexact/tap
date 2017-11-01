@@ -22,6 +22,9 @@ Users.sync().then(() => {
     console.log('Users table synced');
 });
 
+Users.belongsTo(Users_vk, {'foreignKey': 'user_vk'});
+
+
 let creds = {
     protectedAppKey: 'hlMNxJzHmiICqB52tIAi',
     API_TOKEN_KEY: '785b787c785b787c785b787c947805ab147785b785b787c2180ac8b63dc09f0341d6154',
@@ -118,15 +121,16 @@ router.use(async function (req, res, next) {
     next();
 });
 
-async function getFriendsGamers(user) {
-    let vkMutualUsers = await api.call('friends.getMutual', {
-        access_token: user.session,
-        user_id: user.session.mid,
-        session: user.session
-    });
-    console.log(vkMutualUsers);
-    let res = await Users.findAll({where: {user_vk: [413999592]}});
-    return {data: res, method: 'getFriendsGamers', mutual: ''};
+async function getFriendsGamers(req, res, next) {
+    // let ids = req.query.
+    // let vkMutualUsers = await api.call('friends.getMutual', {
+    //     access_token: user.session,
+    //     user_id: user.session.mid,
+    //     session: user.session
+    // });
+    // console.log(vkMutualUsers);
+    // let res = await Users.findAll({where: {user_vk: [413999592]}});
+    // return {data: res, method: 'getFriendsGamers', mutual: ''};
 }
 
 function authUser(res) {
@@ -146,11 +150,17 @@ function f(code, res, user) {
 
 }
 
+router.post('/getFriendsGamers', async function (req, res, next) {
+    let ids = req.body.ids;
+    let result = await Users.findAll({attributes: ['best_result', 'user_vk'], where: {user_vk: ids}, include: [{model: Users_vk, attributes:['first_name', 'last_name', 'photo']}]});
+    res.json({data: result});
+});
+
 /* GET home page. */
 router.get(['/', '/:lang'], async function (req, res, next) {
     if (req.params.lang === 'ru') {
-        authUser(res);
-        return;
+        // authUser(res);
+        // return;
     }
 
     if (req.user) {
@@ -158,7 +168,7 @@ router.get(['/', '/:lang'], async function (req, res, next) {
             switch (req.query.method) {
                 case 'getFriendsGamers':
                     console.log('getFriendsGamers');
-                    res.json(await getFriendsGamers(req.user));
+                    getFriendsGamers(req, res, next);
                     return;
                     break;
                 case 'vkAuth':
