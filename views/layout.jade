@@ -91,14 +91,6 @@ html
                 update();
             }
 
-            function getFriendsGamers() {
-                $.ajax(location.origin, {
-                    data: {method: 'getFriendsGamers'},
-                    success: console.log,
-                    fail: console.error,
-                });
-            }
-
             function firstScreen() {
                 if (!location.pathname.startsWith('/ru')) {
                     return;
@@ -148,7 +140,7 @@ html
                     $.getJSON({
                         url: '/getFriendsGamers',
                         method: 'POST',
-                        data: {'ids': response},
+                        data: {'ids': response.response},
                         success: showPlayedFriends
                     });
                 })
