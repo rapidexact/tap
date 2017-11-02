@@ -144,9 +144,6 @@ html
                 VK.Api.call('friends.getAppUsers', {
                     count: 20,
                 }, function (response) {
-
-                    $.getJSON({url: '/getFriendsGamers', method: 'POST', data: {ids: [413999592]}}, console.log);
-
                     console.log('friends.getAppUsers',response);
                     $.getJSON({
                         url: '/getFriendsGamers',
