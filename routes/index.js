@@ -152,7 +152,10 @@ function f(code, res, user) {
 
 router.post('/getFriendsGamers', async function (req, res, next) {
     let ids = req.body.ids;
+    console.log(req.body.ids);
+    console.log('ids',ids);
     let result = await Users.findAll({attributes: ['best_result', 'user_vk'], where: {user_vk: ids}, include: [{model: Users_vk, attributes:['first_name', 'last_name', 'photo']}]});
+    console.log(result);
     res.json({data: result});
 });
 
