@@ -21,6 +21,7 @@ html
             var gameResult = false;
 
             $(document).ready(function () {
+
                 userBestScore = localStorage.getItem('userBestScore') || 0;
                 $('#toBest').html('Best score: ' + userBestScore);
                 var tap = new ZingTouch.Tap({
@@ -136,7 +137,7 @@ html
                 VK.Api.call('friends.getAppUsers', {
                     count: 20,
                 }, function (response) {
-                    console.log('friends.getAppUsers',response);
+                    console.log('friends.getAppUsers', response);
                     $.getJSON({
                         url: '/getFriendsGamers',
                         method: 'POST',
@@ -144,7 +145,6 @@ html
                         success: showPlayedFriends
                     });
                 })
-
 
 
                 $('div.friends.invite.list').css('display', 'none');
@@ -178,12 +178,12 @@ html
             }
 
             function fetchFriends(response) {
-                    VK.Api.call('friends.get', {
-                        count: 20,
-                        fields: 'nickname, photo_50, photo_100, photo_200_orig, online, can_write_private_message, can_see_all_posts, can_post'
-                    }, function (response) {
-                        displayFriends(response);
-                    })
+                VK.Api.call('friends.get', {
+                    count: 20,
+                    fields: 'nickname, photo_50, photo_100, photo_200_orig, online, can_write_private_message, can_see_all_posts, can_post'
+                }, function (response) {
+                    displayFriends(response);
+                })
             }
 
             function f() {
@@ -356,7 +356,7 @@ html
             width: 6rem;
         }
 
-        .friend .best-result{
+        .friend .best-result {
             line-height: 4rem;
             float: right !important;
         }
